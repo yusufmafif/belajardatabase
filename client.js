@@ -13,8 +13,36 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
         premis: premis,
     };
 
+    let url = "/rpul";
+    let method = "PUT";
+    if (no) {
+        // Jika nilai "no" tersedia, maka ini merupakan permintaan PUT
+        url = `/rpul/${no}`;
+        method = "PUT";
+    } else {
+        // Jika nilai "no" tidak tersedia, maka ini merupakan permintaan POST
+        url = "/rpul";
+        method = "POST";
+    }
+
+
     fetch("http://localhost:3000/rpul", {
         method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+
+    fetch("http://localhost:3000/rpul", {
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
