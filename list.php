@@ -29,11 +29,14 @@ if (!$result) {
     <table>
         <tr>
             <th>ID</th>
-            <th>Nama</th>
-            <th>Alamat</th>
+            <th>Nomor</th>
+            <th>Nama Lengkap</th>
+            <th>Umur</th>
+            <th>Premis</th>
         </tr>
 
         <?php
+        // Mengganti nama variabel $result dengan data yang sesuai dari database MySQL
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>" . $row['id'] . "</td>";
