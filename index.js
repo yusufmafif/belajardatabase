@@ -65,21 +65,40 @@ app.put("/rpul", (req, res) => {
   })
 })
 
-app.delete("/rpul", (req, res) => {
-  const { no } = req.body
-  const sql = `DELETE FROM rpul WHERE no = ${no}`
+// app.delete("/rpul", (req, res) => {
+//   const { no } = req.body
+//   const sql = `DELETE FROM rpul WHERE no = ${no}`
+//   db.query(sql, (err, fields) => {
+//     if (err) response(500, "invalid", "error", res)
+//     if (fields?.affectedRows) {
+//       const data = {
+//         isDeleted: fields.affectedRows,
+//       }
+//       response(200, data, "Deleted Data Successfully", res)
+//     } else {
+//       response(404, "user not found", "error", res)
+//     }
+//   })
+// })
+
+app.delete("/rpul/delete", (req, res) => {
+  const no = req.params.no;
+  const sql = `DELETE FROM rpul WHERE no = ${no}`;
   db.query(sql, (err, fields) => {
-    if (err) response(500, "invalid", "error", res)
+    if (err) response(500, "invalid", "error", res);
     if (fields?.affectedRows) {
       const data = {
         isDeleted: fields.affectedRows,
-      }
-      response(200, data, "Deleted Data Successfully", res)
+      };
+      response(200, data, "Deleted Data Successfully", res);
     } else {
-      response(404, "user not found", "error", res)
+      response(404, "user not found", "error", res);
     }
-  })
-})
+  });
+});
+
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

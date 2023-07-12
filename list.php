@@ -18,10 +18,27 @@ if (!$result) {
 }
 ?>
 
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
 <head>
     <title>Contoh MySQL ke HTML</title>
+    <style>
+        /* Gaya untuk garis vertikal */
+        th, td {
+            padding: 5px;
+            border-right: 1px solid black;
+        }
+        
+        /* Gaya untuk garis di header */
+        th {
+            border-bottom: 1px solid black;
+        }
+        
+        /* Gaya untuk garis di sel data */
+        td {
+            border-bottom: 1px dotted black;
+        }
+    </style>
 </head>
 <body>
     <h1>Data rpul</h1>
@@ -33,6 +50,7 @@ if (!$result) {
             <th>Nama Lengkap</th>
             <th>Umur</th>
             <th>Premis</th>
+            <th>Action</th> <!-- Kolom tambahan untuk tombol delete -->
         </tr>
 
         <?php
@@ -44,6 +62,7 @@ if (!$result) {
             echo "<td>" . $row['nama_lengkap'] . "</td>";
             echo "<td>" . $row['umur'] . "</td>";
             echo "<td>" . $row['premis'] . "</td>";
+            echo "<td><a href='delete.php?no=" . $row['no'] . "'>Delete</a></td>"; // Tombol delete dengan link ke file delete.php
             echo "</tr>";
         }
         ?>
@@ -54,3 +73,4 @@ if (!$result) {
     ?>
 </body>
 </html>
+

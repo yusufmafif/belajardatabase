@@ -1,6 +1,13 @@
 document.getElementById("myForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
+    document.addEventListener("click", function (event) {
+        if (event.target.matches(".delete-button")) {
+            var rowId = event.target.getAttribute("data-row-id");
+            deleteRow(rowId);
+        }
+    });
+
     const no = document.getElementById("no").value;
     const namaLengkap = document.getElementById("namaLengkap").value;
     const umur = document.getElementById("umur").value;
@@ -55,5 +62,23 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
         .catch((error) => {
             console.error("Error:", error);
         });
+
+    fetch("http://localhost:3000/rpul/delete" + rowId, {
+        method: "DELETE"
+    })
+        .then(response => {
+            if (response.ok) {
+                // Hapus baris dari tampilan setelah berhasil menghapus di server
+                var row = document.getElementById(rowId);
+                row.parentNode.removeChild(row);
+            } else {
+                console.error("Gagal menghapus data.");
+            }
+        })
+        .catch(error => {
+            console.error("Terjadi kesalahan: " + error);
+        });
+
+
 
 });
