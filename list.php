@@ -18,10 +18,11 @@ if (!$result) {
 }
 ?>
 
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>DATA RPUL</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* Gaya untuk garis vertikal */
         th, td {
@@ -41,44 +42,38 @@ if (!$result) {
     </style>
 </head>
 <body>
-    <h1>Data rpul</h1>
-    <nav>
-      <ul>
-        <!-- <li><a href="index.html">Post</a></li>
-        <li><a href="delete.html">Put</a></li>
-        <li><a href="http://localhost/BELAJARDATABASE/list.php">list</a></li> -->
-
-      </ul>
-    </nav>
-
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nomor</th>
-            <th>Nama Lengkap</th>
-            <th>Umur</th>
-            <th>Premis</th>
-            <th>Action</th> <!-- Kolom tambahan untuk tombol delete -->
-        </tr>
-
-        <?php
-        // Mengganti nama variabel $result dengan data yang sesuai dari database MySQL
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['no'] . "</td>";
-            echo "<td>" . $row['nama_lengkap'] . "</td>";
-            echo "<td>" . $row['umur'] . "</td>";
-            echo "<td>" . $row['premis'] . "</td>";
-            echo "<td><a href='delete.php?no=" . $row['no'] . "'>Delete</a></td>"; // Tombol delete dengan link ke file delete.php
-            echo "</tr>";
-        }
-        ?>
-    </table>
-
-    <?php
-    mysqli_close($koneksi);
-    ?>
+    <div class="container mt-4">
+        <h1>Data RPUL</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nomor</th>
+                    <th>Nama Lengkap</th>
+                    <th>Umur</th>
+                    <th>Premis</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Mengganti nama variabel $result dengan data yang sesuai dari database MySQL
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['id'] . "</td>";
+                    echo "<td>" . $row['no'] . "</td>";
+                    echo "<td>" . $row['nama_lengkap'] . "</td>";
+                    echo "<td>" . $row['umur'] . "</td>";
+                    echo "<td>" . $row['premis'] . "</td>";
+                    echo "<td>
+                            <a class='btn btn-danger btn-sm' href='delete.php?id=" . $row['id'] . "'>Delete</a>
+                            <a class='btn btn-primary btn-sm' href='edit.php?id=" . $row['id'] . "'>Edit</a>
+                          </td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
-
