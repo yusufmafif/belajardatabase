@@ -21,7 +21,7 @@ if (!$result) {
 <<!DOCTYPE html>
 <html>
 <head>
-    <title>Contoh MySQL ke HTML</title>
+    <title>DATA RPUL</title>
     <style>
         /* Gaya untuk garis vertikal */
         th, td {
@@ -42,6 +42,14 @@ if (!$result) {
 </head>
 <body>
     <h1>Data rpul</h1>
+    <nav>
+      <ul>
+        <!-- <li><a href="index.html">Post</a></li>
+        <li><a href="delete.html">Put</a></li>
+        <li><a href="http://localhost/BELAJARDATABASE/list.php">list</a></li> -->
+
+      </ul>
+    </nav>
 
     <table>
         <tr>
